@@ -12,7 +12,7 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    protected WebDriver driver;
+    public WebDriver driver;
 
     @BeforeMethod
     public void setUp() {
@@ -22,14 +22,18 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
+
         } else if (browser.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
         }
 
         driver.manage().window().maximize();
+
         driver.manage().timeouts().implicitlyWait(
-                Duration.ofSeconds(Integer.parseInt(ConfigReader.getProperty("timeout")))
+                Duration.ofSeconds(
+                        Integer.parseInt(ConfigReader.getProperty("timeout"))
+                )
         );
 
         driver.get(ConfigReader.getProperty("baseUrl"));
@@ -40,5 +44,9 @@ public class BaseTest {
         if (driver != null) {
             driver.quit();
         }
+    }
+
+    public WebDriver getDriver() {
+        return driver;
     }
 }

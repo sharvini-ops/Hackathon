@@ -8,8 +8,8 @@ public class LoginDataProvider {
     public Object[][] getData() {
 
         return new Object[][]{
-                {"validuser@example.com", "password123", "valid"},
-                {"wronguser@example.com", "wrongpass", "invalid"}
+                {"santhsharvini7@gmail.com", "Sharlife@97", "valid"},
+                {"santhsharvini7@gmail.com", "sharlife97", "invalid"}
         };
     }
 }

@@ -3,6 +3,11 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LoginPage extends BasePage {
 
@@ -22,6 +27,11 @@ public class LoginPage extends BasePage {
     }
 
     public String getErrorMessage() {
-        return getText(driver.findElement(errorMsg));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement error = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(text(),'Incorrect')]"))
+        );
+        return error.getText();
     }
+
 }

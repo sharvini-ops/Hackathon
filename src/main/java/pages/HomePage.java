@@ -3,6 +3,7 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
 
@@ -11,11 +12,14 @@ public class HomePage extends BasePage {
     }
 
     private By logoutBtn = By.xpath("//a[text()=' Logout']");
-    private By loginLink = By.xpath("//a[text()=' Signup / Login']");
+    private By loginBtn = By.xpath("//a[text()=' Signup / Login']");
     private By productsLink = By.xpath("//a[text()=' Products']");
 
     public void clickLogin() {
-        click(driver.findElement(loginLink));
+        wait.until(ExpectedConditions.refreshed(
+                ExpectedConditions.elementToBeClickable(loginBtn)
+        )).click();
+
     }
 
     public void clickLogout() {

@@ -1,5 +1,6 @@
 package base;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,7 +22,17 @@ public class BasePage {
 
     public void click(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
+
+        try {
+            element.click();
+        } catch (Exception e) {
+            // fallback using JS click (bypass ads)
+            ((org.openqa.selenium.JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();", element);
+        }
+    }
+    public WebElement find(By locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public void type(WebElement element, String value) {
@@ -37,5 +48,12 @@ public class BasePage {
 
     public void waitForElement(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void removeAds() {
+        ((org.openqa.selenium.JavascriptExecutor) driver)
+                .executeScript(
+                        "document.querySelectorAll('iframe').forEach(e => e.remove());"
+                );
     }
 }

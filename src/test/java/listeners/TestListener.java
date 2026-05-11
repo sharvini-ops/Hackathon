@@ -14,7 +14,7 @@ public class TestListener implements ITestListener {
         BaseTest base = (BaseTest) testClass;
 
         ScreenshotUtil.takeScreenshot(
-                base.driver,
+                base.getDriver(),
                 result.getName()
         );
     }

@@ -19,7 +19,7 @@ public class LoginTest extends BaseTest {
         login.login(email, password);
 
         if (expectedResult.equals("valid")) {
-            Assert.assertTrue(driver.getCurrentUrl().contains("automationexercise"));
+            Assert.assertTrue(driver.getCurrentUrl().contains("https://automationexercise.com"));
         } else {
             Assert.assertTrue(login.getErrorMessage().toLowerCase().contains("incorrect"));
         }
