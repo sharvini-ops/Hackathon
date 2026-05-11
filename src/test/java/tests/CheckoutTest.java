@@ -16,6 +16,7 @@ public class CheckoutTest extends BaseTest {
         checkout.enterPaymentDetails("Test User", "4111111111111111", "123", "12", "2026");
         checkout.submitPayment();
 
+
         Assert.assertTrue(true);
     }
 }

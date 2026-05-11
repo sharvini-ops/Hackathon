@@ -22,7 +22,7 @@ public class CheckoutPage extends BasePage {
     private By expiryMonth = By.name("expiry_month");
     private By expiryYear = By.name("expiry_year");
     private By payBtn = By.id("submit");
-
+    
     public void clickPlaceOrder() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement placeOrder = wait.until(

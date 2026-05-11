@@ -17,11 +17,8 @@ public class CartTest extends BaseTest {
 
     @Test
     public void removeProductFromCart() {
-
         CartPage cart = new CartPage(driver);
-
         cart.removeProduct();
-
         Assert.assertTrue(true);
     }
 }

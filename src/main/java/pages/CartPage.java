@@ -18,7 +18,11 @@ public class CartPage extends BasePage {
     private By productName = By.cssSelector(".cart_description a");
     private By productPrice = By.xpath("//td[@class='cart_price']/p");
     private By removeBtn = By.cssSelector(".cart_quantity_delete");
+    private By cartLink = By.xpath("//a[contains(text(),'Cart')]");
 
+    public void openCart() {
+        wait.until(ExpectedConditions.elementToBeClickable(cartLink)).click();
+    }
 
     public String getCartProductName() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
