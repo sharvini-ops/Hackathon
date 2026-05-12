@@ -13,19 +13,14 @@ public class CheckoutTest extends BaseTest {
     public void completeCheckout() {
 
         HomePage home = new HomePage(driver);
-
         ProductPage product = new ProductPage(driver);
-
         CheckoutPage checkout = new CheckoutPage(driver);
-
         home.goToProducts();
-
         product.addFirstProductToCart();
-
         home.openCart();
 
+        // Order Confirmation
         checkout.clickPlaceOrder();
-
         Assert.assertTrue(true);
     }
 }

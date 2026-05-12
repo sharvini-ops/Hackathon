@@ -10,13 +10,13 @@ public class LoginTest extends BaseTest {
 
     @DataProvider(name = "loginData")
     public Object[][] loginData() {
-
+        //2d Array
         return new Object[][]{
 
-                // VALID LOGIN
+                // Valid Login
                 {"santhsharvini7@gmail.com", "Sharlife@97", "valid"},
 
-                // INVALID LOGIN
+                // Invalid Login
                 {"santhsharvini7@gmail.com", "wrong123", "invalid"}
         };
     }

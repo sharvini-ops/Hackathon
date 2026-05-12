@@ -2,14 +2,11 @@ package report;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ExtentReportManager {
-
     private static ExtentReports extent;
-
     public static ExtentReports getExtentReports() {
 
         if (extent == null) {
@@ -23,7 +20,7 @@ public class ExtentReportManager {
             // Spark Reporter (HTML report engine)
             ExtentSparkReporter sparkReporter = new ExtentSparkReporter(reportPath);
 
-            sparkReporter.config().setReportName("AutoQA Pro Test Report");
+            sparkReporter.config().setReportName("E-Commerce Project");
             sparkReporter.config().setDocumentTitle("Automation Test Results");
 
             // Main report object
@@ -31,12 +28,11 @@ public class ExtentReportManager {
             extent.attachReporter(sparkReporter);
 
             // System info (useful in interview/viva)
-            extent.setSystemInfo("Project", "AutoQA Pro");
+            extent.setSystemInfo("Project", "E-Commerce Project");
             extent.setSystemInfo("Tester", "Student");
             extent.setSystemInfo("Environment", "QA");
             extent.setSystemInfo("Browser", "Chrome/Firefox");
         }
-
         return extent;
     }
 }
