@@ -1,0 +1,13 @@
+The framework should  automate end-to-end test scenarios across the following functional areas:
+
+●  User login, registration, and logout
+● Product search and detail verification
+● Shopping cart – add and remove items
+● Form validations – empty fields and invalid inputs
+
+Key modules available for testing:
+
+ ● Auth – Register, Login, Logout
+ ● Products – Search, Browse by category, View product details
+ ● Cart – Add, Remove items
+ ● Checkout – Address, Payment, Order confirmation
