@@ -1,9 +1,9 @@
 package listeners;
 
+import base.BaseTest;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import utils.ScreenshotUtil;
-import base.BaseTest;
 
 public class TestListener implements ITestListener {
 

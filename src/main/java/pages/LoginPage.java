@@ -3,35 +3,47 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class LoginPage extends BasePage {
 
+    // Locators
+    private By signupLoginLink = By.xpath("//a[contains(text(),'Signup / Login')]");
+    private By emailField = By.xpath("//input[@data-qa='login-email']");
+    private By passwordField = By.xpath("//input[@data-qa='login-password']");
+    private By loginButton = By.xpath("//button[@data-qa='login-button']");
+
+    // Error message shown for invalid or empty login
+    private By errorMessage = By.cssSelector("form[action='/login'] p");
+
+    // Constructor
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    private By email = By.xpath("//input[@data-qa='login-email']");
-    private By password = By.xpath("//input[@data-qa='login-password']");
-    private By loginBtn = By.xpath("//button[@data-qa='login-button']");
-    private By errorMsg = By.xpath("//p[contains(text(),'incorrect')]");
-
-    public void login(String userEmail, String userPassword) {
-        type(driver.findElement(email), userEmail);
-        type(driver.findElement(password), userPassword);
-        click(driver.findElement(loginBtn));
+    // Open login page
+    public void openLoginPage() {
+        wait.until(ExpectedConditions.elementToBeClickable(signupLoginLink)).click();
     }
 
+    // Perform login
+    public void login(String email, String password) {
+        openLoginPage();
+        type(emailField, email);
+        type(passwordField, password);
+        click(loginButton);
+    }
+
+    // Get error message
     public String getErrorMessage() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement error = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(text(),'Incorrect')]"))
-        );
-        return error.getText();
+        return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(errorMessage)
+        ).getText();
     }
-
 }
+
+//LoginPage
+
+//New Browser login page
+//Login with correct (username, password)
+//Login with correct username and wrong password

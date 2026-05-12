@@ -12,21 +12,26 @@ public class ProductTest extends BaseTest {
     public void searchProductTest() {
 
         HomePage home = new HomePage(driver);
+
         ProductPage product = new ProductPage(driver);
 
         home.goToProducts();
+
         product.searchProduct("shirt");
 
-        Assert.assertTrue(product.getFirstProductName().length() > 0);
+        Assert.assertTrue(
+                product.getFirstProductName().length() > 0);
     }
 
     @Test
     public void addProductToCartTest() {
 
         HomePage home = new HomePage(driver);
+
         ProductPage product = new ProductPage(driver);
 
         home.goToProducts();
+
         product.addFirstProductToCart();
 
         Assert.assertTrue(true);

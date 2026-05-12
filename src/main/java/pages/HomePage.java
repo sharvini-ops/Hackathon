@@ -1,32 +1,29 @@
 package pages;
 
-import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class HomePage extends BasePage {
+public class HomePage {
+
+    WebDriver driver;
 
     public HomePage(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
     }
 
-    private By logoutBtn = By.xpath("//a[text()=' Logout']");
-    private By loginBtn = By.xpath("//a[text()=' Signup / Login']");
-    private By productsLink = By.xpath("//a[text()=' Products']");
-
-    public void clickLogin() {
-        wait.until(ExpectedConditions.refreshed(
-                ExpectedConditions.elementToBeClickable(loginBtn)
-        )).click();
-
-    }
-
-    public void clickLogout() {
-        click(driver.findElement(logoutBtn));
-    }
+    By productsBtn = By.xpath("//a[contains(text(),'Products')]");
+    By cartBtn = By.xpath("//a[contains(text(),'Cart')]");
+    By loginBtn = By.xpath("//a[contains(text(),'Signup / Login')]");
 
     public void goToProducts() {
-        click(driver.findElement(productsLink));
+        driver.findElement(productsBtn).click();
+    }
+
+    public void openCart() {
+        driver.findElement(cartBtn).click();
+    }
+
+    public void clickLogin() {
+        driver.findElement(loginBtn).click();
     }
 }
