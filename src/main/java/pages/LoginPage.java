@@ -1,49 +1,64 @@
 package pages;
 
-import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage extends BasePage {
+import java.time.Duration;
 
-    // Locators
-    private By signupLoginLink = By.xpath("//a[contains(text(),'Signup / Login')]");
-    private By emailField = By.xpath("//input[@data-qa='login-email']");
-    private By passwordField = By.xpath("//input[@data-qa='login-password']");
-    private By loginButton = By.xpath("//button[@data-qa='login-button']");
+public class LoginPage {
 
-    // Error message shown for invalid or empty login
-    private By errorMessage = By.cssSelector("form[action='/login'] p");
+    WebDriver driver;
+    WebDriverWait wait;
 
-    // Constructor
     public LoginPage(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
-    // Open login page
-    public void openLoginPage() {
-        wait.until(ExpectedConditions.elementToBeClickable(signupLoginLink)).click();
+    By loginLink = By.xpath("//a[contains(text(),'Signup / Login')]");
+    By emailField = By.xpath("//input[@data-qa='login-email']");
+    By passwordField = By.xpath("//input[@data-qa='login-password']");
+    By loginButton = By.xpath("//button[contains(text(),'Login')]");
+    By errorMessage = By.xpath("//p[contains(text(),'Your email') or contains(text(),'incorrect')]");
+    By logoutBtn = By.xpath("//a[contains(text(),'Logout')]");
+
+    public void clickLogin() {
+        wait.until(ExpectedConditions.elementToBeClickable(loginLink)).click();
     }
 
-    // Perform login
+    public void enterEmail(String email) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(emailField)).sendKeys(email);
+    }
+
+    public void enterPassword(String password) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(passwordField)).sendKeys(password);
+    }
+
+    public void clickLoginButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
+    }
+
     public void login(String email, String password) {
-        openLoginPage();
-        type(emailField, email);
-        type(passwordField, password);
-        click(loginButton);
+        clickLogin();
+        enterEmail(email);
+        enterPassword(password);
+        clickLoginButton();
     }
 
-    // Get error message
     public String getErrorMessage() {
-        return wait.until(
-                ExpectedConditions.visibilityOfElementLocated(errorMessage)
-        ).getText();
+
+        try {
+            return wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(errorMessage)
+            ).getText();
+        } catch (Exception e) {
+            return "ERROR MESSAGE NOT FOUND";
+        }
+    }
+
+    public void logout() {
+        wait.until(ExpectedConditions.elementToBeClickable(logoutBtn)).click();
     }
 }
-
-//LoginPage
-
-//New Browser login page
-//Login with correct (username, password)
-//Login with correct username and wrong password

@@ -17,7 +17,7 @@ public class BaseTest {
         driver = new ChromeDriver();
         //Browser wait time
         driver.manage().timeouts()
-                .implicitlyWait(Duration.ofSeconds(20));
+                .implicitlyWait(Duration.ofSeconds(30));
         // Link to open browser
         driver.get("https://automationexercise.com");
     }
