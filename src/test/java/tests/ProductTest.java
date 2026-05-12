@@ -17,16 +17,25 @@ public class ProductTest extends BaseTest {
 
         //Search Products with unique name
         product.searchProduct("shirt");
+
+        //Assertion Message
         Assert.assertTrue(
                 product.getFirstProductName().length() > 0);
     }
 
+    //Adding Products to cart
     @Test
     public void addProductToCartTest() {
         HomePage home = new HomePage(driver);
         ProductPage product = new ProductPage(driver);
+
+        //Directs to Productspage from Homepage
         home.goToProducts();
+
+        //Products adding Function
         product.addFirstProductToCart();
+
+        //Assertion Message
         Assert.assertTrue(true);
     }
 }

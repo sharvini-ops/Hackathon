@@ -12,22 +12,21 @@ public class FormValidationTest extends BaseTest {
 
         LoginPage login = new LoginPage(driver);
 
-        // STEP 1: OPEN LOGIN PAGE
+        // Open Login PageE
         login.clickLogin();
 
-        // STEP 2: GIVE INVALID DATA (NOT EMPTY - IMPORTANT FIX)
+       //Invalid data
         login.enterEmail("invalid@test.com");
-        login.enterPassword("wrongpass");
-
-        // STEP 3: SUBMIT
+        login.enterPassword("wrongpassword");
         login.clickLoginButton();
 
-        // STEP 4: GET ERROR
+        // Error Message
         String msg = login.getErrorMessage();
 
+        //Printing the error message
         System.out.println("ERROR MSG: " + msg);
 
-        // STEP 5: ASSERT PROPERLY
+        //Assertion Message
         Assert.assertTrue(
                 msg.toLowerCase().contains("incorrect") ||
                         msg.toLowerCase().contains("email") ||

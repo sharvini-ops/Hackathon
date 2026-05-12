@@ -10,7 +10,7 @@ public class LoginTest extends BaseTest {
 
     @DataProvider(name = "loginData")
     public Object[][] loginData() {
-        //2d Array
+        //2D Array
         return new Object[][]{
 
                 // Valid Login
@@ -22,25 +22,23 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "loginData")
-    public void validateLogin(String email,
-                              String password,
-                              String type) {
+    public void validateLogin(String email, String password, String type) {
 
         LoginPage login = new LoginPage(driver);
 
+        //Login with email and password
         login.login(email, password);
 
+        //Check Login successful or not
         if (type.equals("valid")) {
 
-            Assert.assertTrue(
-                    driver.getCurrentUrl().contains("automationexercise")
-            );
+            //Assertion Message
+            Assert.assertTrue(driver.getCurrentUrl().contains("automationexercise"));
+        }
+        else {
 
-        } else {
-
-            Assert.assertTrue(
-                    login.getErrorMessage()
-                            .contains("incorrect")
+            //Assertion Message
+            Assert.assertTrue(login.getErrorMessage().contains("incorrect")
             );
         }
     }

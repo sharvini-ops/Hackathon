@@ -15,12 +15,20 @@ public class CheckoutTest extends BaseTest {
         HomePage home = new HomePage(driver);
         ProductPage product = new ProductPage(driver);
         CheckoutPage checkout = new CheckoutPage(driver);
+
+        //Directs Productspage from Homepage
         home.goToProducts();
+
+        //Adding first product to cart
         product.addFirstProductToCart();
+
+        //Opening Cart
         home.openCart();
 
         // Order Confirmation
         checkout.clickPlaceOrder();
+
+        //Assertion Message
         Assert.assertTrue(true);
     }
 }

@@ -32,7 +32,6 @@ public class BasePage {
     // Get text using By locator
     public String getText(By locator) {
         return wait.until(
-                ExpectedConditions.visibilityOfElementLocated(locator)
-        ).getText();
+                ExpectedConditions.visibilityOfElementLocated(locator)).getText();
     }
 }

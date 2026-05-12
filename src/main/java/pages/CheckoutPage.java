@@ -12,21 +12,25 @@ public class CheckoutPage {
     WebDriver driver;
     WebDriverWait wait;
 
+    //Move Products to checkout from cart
     public CheckoutPage(WebDriver driver) {
 
         this.driver = driver;
 
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        //wait time is 40
+        wait = new WebDriverWait(driver, Duration.ofSeconds(40));
     }
 
+    //Checkout button
     By checkoutBtn =
             By.xpath("//a[contains(text(),'Proceed To Checkout')]");
 
+    //Placing order
     public void clickPlaceOrder() {
 
-        wait.until(
-                ExpectedConditions.elementToBeClickable(checkoutBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(checkoutBtn));
 
+        //Clicking checkout Button
         driver.findElement(checkoutBtn).click();
     }
 }
